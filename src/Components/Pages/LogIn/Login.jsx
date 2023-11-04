@@ -1,19 +1,29 @@
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+
 
 
 const Login = () => {
 
+    const { logIn } = useContext(AuthContext)
 
     const handleLogin = e => {
         e.preventDefault();
         const form = e.target;
-        const name = form.name.value;
-        const photo = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
 
-        const registerUser = { name, photo, email, password }
+        const registerUser = { email, password }
 
         console.log(registerUser)
+
+        logIn(email, password)
+            .then(res => {
+                console.log(res)
+            })
+            .catch(error => {
+                console.log(error)
+            })
 
         form.reset()
     }
@@ -49,6 +59,7 @@ const Login = () => {
                         <div className="form-control mt-6">
                             <button className="btn hover:bg-[#FF3811] hover:text-white text-white bg-[#FF3811]">Login</button>
                         </div>
+                        <p className="text-xl">Do not have an account? <a className="text-[#FF3811]" href="/registration">Register Now</a> </p>
                     </form>
                 </div>
             </div>

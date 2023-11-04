@@ -1,5 +1,21 @@
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { updateProfile } from "firebase/auth";
+
+
+
 
 const Registration = () => {
+
+    const notify = () => toast("Registration Successful!");
+    const notify1 = () => toast('Password should be at 6 characters or longer');
+    const notify2 = () => toast('your Password should have at one upper case latter');
+    const notify3 = () => toast('your Password should have at one special characters');
+
+    const {createUser} = useContext(AuthContext)
+    // const { createUser } = useContext(AuthContext)
 
     const handleRegister = e => {
         e.preventDefault();
@@ -11,8 +27,33 @@ const Registration = () => {
 
         const registerUser = { name, photo, email, password }
 
+        if(password.length < 6){
+            notify1();
+            return;
+        }else if(!/[A-Z]/.test(password)){
+            notify2();
+            return;
+        }else if(!/^(?=.*[\d])(?=.*[!@#$%^&*])[\w!@#$%^&*]{6,16}$/.test(password)){
+            notify3();
+            return;
+        }
+
+
         console.log(registerUser)
 
+        createUser(email, password)
+            .then(res => {
+                console.log(res);
+                updateProfile(res.user,{
+                    displayName: name,
+                    photoURL: photo
+                })
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+
+            notify()
         form.reset()
     }
 
@@ -60,9 +101,11 @@ const Registration = () => {
                         <div className="form-control mt-6">
                             <button className="btn hover:bg-[#FF3811] hover:text-white text-white bg-[#FF3811]">Register</button>
                         </div>
+                        <p className="text-xl">Already you have an account? <a className="text-[#FF3811]" href="/login">Login Now</a> </p>
                     </form>
                 </div>
             </div>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };
