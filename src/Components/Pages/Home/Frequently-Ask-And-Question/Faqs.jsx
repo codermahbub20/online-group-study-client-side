@@ -8,7 +8,7 @@ const Faqs = () => {
                 <h1 className="text-4xl font-bold">Frequently Asked Questions</h1>
             </div>
 
-            <div className="md:flex gap-5 space-y-5">
+            <div className="lg:flex sm:gap-5 md:gap-10  space-y-5">
                 <div className="flex-1 mt-5 space-y-3">
                     <div className="collapse collapse-plus bg-base-200">
                         <input type="radio" name="my-accordion-3" checked="checked" />
@@ -57,8 +57,8 @@ const Faqs = () => {
                     </div>
                 </div>
 
-                <div className="flex-1 flex-wrap">
-                    <img className="h-3/4" src="https://demo.omexer.com/main/wp-content/uploads/sites/3/2021/03/img-1.jpg" alt="" />
+                <div className="flex-1">
+                    <img className="h-3/4 md:1/2 rounded-lg" src="https://demo.omexer.com/main/wp-content/uploads/sites/3/2021/03/img-1.jpg" alt="" />
                 </div>
             </div>
         </div>

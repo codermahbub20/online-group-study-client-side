@@ -7,7 +7,7 @@ const Home = () => {
             <div className="w-11/12 mx-auto mt-4">
                 <Banner></Banner>
             </div>
-            <div className="w-11/12 mx-auto p-5">
+            <div className="w-3/4 mx-auto  p-5">
             <Faqs></Faqs>
             </div>
         </div>
