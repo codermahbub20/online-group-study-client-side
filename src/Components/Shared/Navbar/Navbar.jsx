@@ -11,7 +11,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className="navbar bg-white shadow-lg">
+        <div className="navbar md:px-10 bg-white shadow-lg">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -21,7 +21,7 @@ const Navbar = () => {
                         {navlinks}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl"><img className="w-1/2" src="https://demo.omexer.com/main/wp-content/uploads/sites/3/2021/06/logo.png" alt="" /></a>
+                <a ><img className="w-1/2 " src="https://demo.omexer.com/main/wp-content/uploads/sites/3/2021/06/logo.png" alt="" /></a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal text-lg px-1">
