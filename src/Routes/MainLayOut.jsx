@@ -1,10 +1,12 @@
 import { Outlet } from "react-router-dom";
+import Navbar from "../Components/Shared/Navbar/Navbar";
+
 
 
 const MainLayOut = () => {
     return (
         <div>
-            <h1>Hello World . The Client side server is running</h1>
+            <Navbar></Navbar>
             <Outlet></Outlet>
         </div>
     );

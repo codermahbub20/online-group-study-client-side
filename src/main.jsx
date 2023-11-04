@@ -7,7 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import MainLayOut from './Routes/MainLayOut';
-import Home from './Pages/Home/Home/Home.Jsx';
+import Home from './Components/Pages/Home/Home/Home';
 
 
 
