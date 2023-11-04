@@ -13,7 +13,7 @@ const Banner = () => {
                             <h1 className='text-xl md:text-3xl lg:text-5xl '>Start Learn from Home and Learn group study platform</h1>
                             <p className="md:text-xl">Collaborative learning, diverse insights, accountability, and improved understanding in groups</p>
                             <button className='btn bg-[#FF3811] text-white border-none hover:text-black mr-4 '>See More...</button>
-                            <button className="btn text-white hover:bg-[#FF3811] btn-outline">Join With Us</button>
+                            <button className="btn text-white hover:bg-[hsl(10,100%,53%)] btn-outline">Join With Us</button>
                         </div>
                     </div>
 

@@ -1,4 +1,5 @@
 import Banner from "../Banner/Banner";
+import Faqs from "../Frequently-Ask-And-Question/Faqs";
 
 const Home = () => {
     return (
@@ -6,7 +7,9 @@ const Home = () => {
             <div className="w-11/12 mx-auto mt-4">
                 <Banner></Banner>
             </div>
-            
+            <div className="w-11/12 mx-auto p-5">
+            <Faqs></Faqs>
+            </div>
         </div>
     );
 };
