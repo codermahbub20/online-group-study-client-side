@@ -13,6 +13,7 @@ import Login from './Components/Pages/LogIn/Login';
 import AuthProvider from './Components/providers/AuthProvider';
 import CreateAssignment from './Components/Pages/Create-Assignment/CreateAssignment';
 import AllAssignment from './Components/Pages/All-Assignment/AllAssignment';
+import UpdateAssignment from './Components/Pages/Update-Assignment/UpdateAssignment';
 
 
 
@@ -21,14 +22,14 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayOut></MainLayOut>,
-    children:[
+    children: [
       {
-       path: "/",
-       element: <Home></Home>
+        path: "/",
+        element: <Home></Home>
       },
       {
         path: "registration",
-        element:<Registration></Registration>
+        element: <Registration></Registration>
       },
       {
         path: "login",
@@ -42,6 +43,11 @@ const router = createBrowserRouter([
         path: "allassignment",
         element: <AllAssignment></AllAssignment>,
         // loader: ()=>fetch(`http://localhost:5000/createAssignment`)
+      },
+      {
+        path: "/updateassignment/:id",
+        element: <UpdateAssignment></UpdateAssignment>,
+       loader: ({params}) => fetch(`http://localhost:5000/createAssignment/${params.id}`)
       }
     ]
   },
@@ -51,7 +57,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </AuthProvider>
   </React.StrictMode>,
 )

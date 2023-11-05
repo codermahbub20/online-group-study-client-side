@@ -27,7 +27,7 @@ const AllAssignment = () => {
                     </div>
                 </div>
             </div>
-            <div className="w-11/12 mx-auto">
+            <div className="w-5/6 p-5 mx-auto gap-5 grid md:grid-cols-2 lg:grid-cols-3">
                 {
                     assignmentData.map(card => <AssignmentCard card={card} key={card._id}></AssignmentCard>)
                 }

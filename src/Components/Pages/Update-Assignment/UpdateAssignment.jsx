@@ -1,15 +1,19 @@
 import axios from "axios";
+import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
-
-import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
+import "react-datepicker/dist/react-datepicker.css";
 
-const CreateAssignment = () => {
+const UpdateAssignment = () => {
+
     const [startDate, setStartDate] = useState(new Date());
+    const updateData = useLoaderData()
 
+    console.log(updateData)
+    const{title,description,mark,photo,level,_id} = updateData;
 
-    const handleCreateAssignment = (e) => {
+    const handleUpdateAssignment = (e) => {
         e.preventDefault();
         const form = e.target;
         const title = form.title.value;
@@ -23,17 +27,18 @@ const CreateAssignment = () => {
 
         console.log(assignmentInfo)
 
-        axios.post('http://localhost:5000/createAssignment',assignmentInfo)
+        axios.put(`http://localhost:5000/createAssignment/${_id}`,assignmentInfo)
         .then(res=>{
             console.log(res.data)
-            if(res.data.insertedId){
+            if(res.data.modifiedCount){
                 Swal.fire({
                     title: 'Success!',
-                    text: 'Assignment create Successfully Done !!',
+                    text: 'YAY...!! assignment update Successfully Done !!',
                     icon: 'success',
                     confirmButtonText: 'Great'
                   })
             }
+
         })
         .catch(error =>{
             console.log(error)
@@ -43,7 +48,6 @@ const CreateAssignment = () => {
     }
 
 
-
     return (
         <div>
             <div className="p-5 rounded-lg">
@@ -51,29 +55,29 @@ const CreateAssignment = () => {
                     <div className="hero-overlay rounded-lg bg-opacity-80"></div>
                     <div className="hero-content text-center text-neutral-content">
                         <div className="max-w-md">
-                            <h1 className="text-2xl md:text-5xl font-medium">Create Assignment</h1>
+                            <h1 className="text-2xl md:text-5xl font-medium">Update Assignment</h1>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div className="w-3/4 mx-auto p-5 mb-5">
-                <h1 className="text-3xl text-center font-medium mb-3">Enter Create A Assignment</h1>
+                <h1 className="text-3xl text-center font-medium mb-3">Update A Assignment : {title}</h1>
                 <hr />
-                <form onSubmit={handleCreateAssignment}>
+                <form onSubmit={handleUpdateAssignment}>
                     <div className='lg:flex md:px-24'>
                         <div className="form-control lg:w-1/2">
                             <label className="label">
                                 <span className="label-text  text-xl">Assignment Title</span>
                             </label>
-                            <input type="text" placeholder="Assignment Title" className="input input-bordered" name='title' required />
+                            <input type="text" defaultValue={title} placeholder="Assignment Title" className="input input-bordered" name='title' required />
 
                         </div>
                         <div className="form-control lg:ml-4 lg:w-1/2">
                             <label className="label">
                                 <span className="label-text text-xl">Assignment Description</span>
                             </label>
-                            <input type="text" placeholder="Assignment Description" className="input input-bordered" name='description' required />
+                            <input type="text" defaultValue={description} placeholder="Assignment Description" className="input input-bordered" name='description' required />
                         </div>
                     </div>
 
@@ -83,14 +87,14 @@ const CreateAssignment = () => {
                             <label className="label">
                                 <span className="label-text text-xl">Assignment Marks</span>
                             </label>
-                            <input type="number" defaultValue={50} placeholder="Assignment Marks" className="input input-bordered" name='mark' required />
+                            <input type="number"  defaultValue={mark} placeholder="Assignment Marks" className="input input-bordered" name='mark' required />
 
                         </div>
                         <div className="form-control lg:ml-4 lg:w-1/2">
                             <label className="label">
                                 <span className="label-text   text-xl">Thumbnail Img Url</span>
                             </label>
-                            <input type="text" placeholder="Thumbnail Img Url" className="input input-bordered" name='photo' required />
+                            <input type="text" defaultValue={photo} placeholder="Thumbnail Img Url" className="input input-bordered" name='photo' required />
                         </div>
                     </div>
                     <div className='lg:flex md:px-24'>
@@ -98,7 +102,7 @@ const CreateAssignment = () => {
                             <label className="label">
                                 <span className="label-text  text-xl">Assignment Level</span>
                             </label>
-                            <select name="level" className="select text-xl select-ghost w-full  input  input-bordered">
+                            <select name="level" defaultValue={level} className="select text-xl select-ghost w-full  input  input-bordered">
                                 <option disabled selected>Enter Your Assignment Level</option>
                                 <option>easy</option>
                                 <option>medium</option>
@@ -110,7 +114,7 @@ const CreateAssignment = () => {
                             <label className="label">
                                 <span className="label-text   text-xl">Assignment Due Date</span>
                             </label>
-                            <DatePicker name="date" className="input w-full input-bordered" selected={startDate} onChange={(date) => setStartDate(date)} />
+                            <DatePicker name="date"  className="input w-full input-bordered" selected={startDate} onChange={(date) => setStartDate(date)} />
 
                         </div>
                     </div>
@@ -125,4 +129,4 @@ const CreateAssignment = () => {
     );
 };
 
-export default CreateAssignment;
+export default UpdateAssignment;
