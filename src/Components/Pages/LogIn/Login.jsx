@@ -1,10 +1,13 @@
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-
-
+import { FcGoogle } from "react-icons/fc";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import app from "../../Firebase/firebase.config";
 
 const Login = () => {
 
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth(app);
     const { logIn } = useContext(AuthContext)
 
     const handleLogin = e => {
@@ -26,6 +29,16 @@ const Login = () => {
             })
 
         form.reset()
+    }
+
+    const handleGoogleSignIn = () =>{
+        signInWithPopup(auth,provider)
+        .then(result =>{
+            console.log(result)
+        })
+        .catch(error =>{
+            console.log(error)
+        })
     }
 
     return (
@@ -58,6 +71,9 @@ const Login = () => {
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn hover:bg-[#FF3811] hover:text-white text-white bg-[#FF3811]">Login</button>
+                        </div>
+                        <div className="form-control w-1/2">
+                            <button onClick={handleGoogleSignIn} className="btn btn-outline btn-sm hover:text-white   btn-ghost">Google <FcGoogle className="w-8 h-5"></FcGoogle></button>
                         </div>
                         <p className="text-xl">Do not have an account? <a className="text-[#FF3811]" href="/registration">Register Now</a> </p>
                     </form>

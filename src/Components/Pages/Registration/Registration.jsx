@@ -3,18 +3,23 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { updateProfile } from "firebase/auth";
-
+import { FcGoogle } from "react-icons/fc";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import app from "../../Firebase/firebase.config";
 
 
 
 const Registration = () => {
+
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth(app);
 
     const notify = () => toast("Registration Successful!");
     const notify1 = () => toast('Password should be at 6 characters or longer');
     const notify2 = () => toast('your Password should have at one upper case latter');
     const notify3 = () => toast('your Password should have at one special characters');
 
-    const {createUser} = useContext(AuthContext)
+    const { createUser } = useContext(AuthContext)
     // const { createUser } = useContext(AuthContext)
 
     const handleRegister = e => {
@@ -27,13 +32,13 @@ const Registration = () => {
 
         const registerUser = { name, photo, email, password }
 
-        if(password.length < 6){
+        if (password.length < 6) {
             notify1();
             return;
-        }else if(!/[A-Z]/.test(password)){
+        } else if (!/[A-Z]/.test(password)) {
             notify2();
             return;
-        }else if(!/^(?=.*[\d])(?=.*[!@#$%^&*])[\w!@#$%^&*]{6,16}$/.test(password)){
+        } else if (!/^(?=.*[\d])(?=.*[!@#$%^&*])[\w!@#$%^&*]{6,16}$/.test(password)) {
             notify3();
             return;
         }
@@ -44,17 +49,27 @@ const Registration = () => {
         createUser(email, password)
             .then(res => {
                 console.log(res);
-                updateProfile(res.user,{
+                updateProfile(res.user, {
                     displayName: name,
                     photoURL: photo
                 })
             })
-            .catch(error =>{
+            .catch(error => {
                 console.log(error)
             })
 
-            notify()
+        notify()
         form.reset()
+    }
+
+    const handleGoogleSignIn = () => {
+        signInWithPopup(auth, provider)
+            .then(result => {
+                console.log(result)
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
 
@@ -100,6 +115,9 @@ const Registration = () => {
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn hover:bg-[#FF3811] hover:text-white text-white bg-[#FF3811]">Register</button>
+                        </div>
+                        <div className="form-control w-1/2">
+                            <button onClick={handleGoogleSignIn} className="btn btn-outline btn-sm hover:text-white   btn-ghost">Google <FcGoogle className="w-8 h-5"></FcGoogle></button>
                         </div>
                         <p className="text-xl">Already you have an account? <a className="text-[#FF3811]" href="/login">Login Now</a> </p>
                     </form>
