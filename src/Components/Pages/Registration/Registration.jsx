@@ -6,6 +6,7 @@ import { updateProfile } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import app from "../../Firebase/firebase.config";
+import SubBanner from "../../Shared/Sub-Banner/SubBanner";
 
 
 
@@ -75,16 +76,7 @@ const Registration = () => {
 
     return (
         <div className="p-5 ">
-            <div className="hero min-h-[30vh] rounded-lg" style={{ backgroundImage: 'url(https://demo.omexer.com/main/wp-content/uploads/sites/3/2021/04/banner-3.jpg)' }}>
-                <div className="hero-overlay bg-opacity-80"></div>
-                <div className="hero-content text-center text-neutral-content">
-                    <div className="max-w-md">
-                        <h1 className="text-2xl md:text-5xl font-medium">Student Registration</h1>
-
-                    </div>
-                </div>
-            </div>
-
+            <SubBanner></SubBanner>
             <div className="md:w-1/2 mx-auto mt-5 bg-white shadow-2xl rounded-lg p-5">
                 <h1 className="text-2xl text-center font-medium">Registration Now</h1>
                 <div className="lg:w-3/4 mx-auto">
@@ -99,7 +91,7 @@ const Registration = () => {
                             <label className="label">
                                 <span className="label-text">Photo URL</span>
                             </label>
-                            <input type="text" name="photo" placeholder="email" className="input input-bordered" required />
+                            <input type="text" name="photo" placeholder="photo url" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
