@@ -15,7 +15,7 @@ const AssignmentCard = ({ card }) => {
                     <p className="text-xl"> Assignment Marks: {mark}</p>
                     <div className="card-actions sm:items-center">
 
-                        <Link><button className="btn btn-sm hover:bg-[#FF3811] hover:text-white bg-[#FF3811] text-white">View Assignment</button></Link>
+                        <Link to={`/viewassignment/${_id}`}><button className="btn btn-sm hover:bg-[#FF3811] hover:text-white bg-[#FF3811] text-white">View Assignment</button></Link>
 
                         <Link to={`/updateassignment/${_id}`}><button className="btn btn-sm hover:bg-[#FF3811] hover:text-white bg-[#FF3811] text-white">Update Assignment</button></Link>
 

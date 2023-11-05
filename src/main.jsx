@@ -14,6 +14,7 @@ import AuthProvider from './Components/providers/AuthProvider';
 import CreateAssignment from './Components/Pages/Create-Assignment/CreateAssignment';
 import AllAssignment from './Components/Pages/All-Assignment/AllAssignment';
 import UpdateAssignment from './Components/Pages/Update-Assignment/UpdateAssignment';
+import ViewAssignment from './Components/Pages/View-Assignment/ViewAssignment';
 
 
 
@@ -48,6 +49,11 @@ const router = createBrowserRouter([
         path: "/updateassignment/:id",
         element: <UpdateAssignment></UpdateAssignment>,
        loader: ({params}) => fetch(`http://localhost:5000/createAssignment/${params.id}`)
+      },
+      {
+        path:"/viewassignment/:id",
+        element: <ViewAssignment></ViewAssignment>,
+        loader: ({params}) => fetch(`http://localhost:5000/createAssignment/${params.id}`)
       }
     ]
   },
