@@ -1,0 +1,41 @@
+{
+    "features": [
+      {
+        "id": 1,
+        "featureName": "Virtual Study Rooms",
+        "description": "Create or join virtual study rooms to collaborate with peers in real-time.",
+        "photoUrl": "https://uploads-ssl.webflow.com/60890f6ac44206aef9237eb4/611eac424e561ad4d929fcf2_Group%20118.png"
+      },
+      {
+        "id": 4,
+        "featureName": "File Sharing",
+        "description": "Easily share study materials, notes, and documents within study groups.",
+        "photoUrl": "https://www.multcloud.com/screenshot/en/others/file-sharing.png"
+      },
+      {
+        "id": 5,
+        "featureName": "Discussion Forums",
+        "description": "Participate in discussion forums to ask questions, share knowledge, and seek help ",
+        "photoUrl": "https://www.codlearningtech.org/wp-content/uploads/2020/07/discussionboard-1.png"
+      },
+      {
+        "id": 8,
+        "featureName": "Resource Library",
+        "description": "Access a library of educational resources, books, and reference materials for various subjects.",
+        "photoUrl": "https://previews.123rf.com/images/urfingus/urfingus1508/urfingus150800277/44202100-wood-bookshelf-in-the-shape-of-human-head-and-books-near-break-wall-knowledge-concept.jpg"
+      },
+      {
+        "id": 10,
+        "featureName": "Chat Messaging",
+        "description": "Engage in chat conversations with group members for quick questions or discussions.",
+        "photoUrl": "https://messaggio.com/wp-content/uploads/2023/06/Viber-Bot-for-business-550x366.jpeg"
+      },
+      {
+        "id": 11,
+        "featureName": "Peer Tutoring",
+        "description": "Offer or receive peer tutoring and assistance from students with expertise in specific subjects.",
+        "photoUrl": "https://www.teachingtimes.com/wp-content/uploads/2017/12/Peer1-Capture-683x487.jpg"
+      }
+    ]
+  }
+  
