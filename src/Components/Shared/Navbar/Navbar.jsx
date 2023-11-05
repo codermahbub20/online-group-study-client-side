@@ -1,18 +1,39 @@
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 
 const Navbar = () => {
 
-    const {user} = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+
+    const [hovered, setHovered] = useState(false);
+
+    const handleMouseEnter = () => {
+        setHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        setHovered(false);
+    };
 
     const navlinks = <>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/allassignment">All Assignment</Link></li>
-        <li><Link to="/createassignment">Create Assignment</Link></li>
-        <li><Link to="/login">Log in</Link></li>
-        <li><Link to="/registration">Registration</Link></li>
+        <li><NavLink to="/">Home</NavLink></li>
+        <li><NavLink to="/allassignment">All Assignment</NavLink></li>
+        <li><NavLink to="/createassignment">Create Assignment</NavLink></li>
+        <li><NavLink to="/login">Log in</NavLink></li>
+        <li><NavLink to="/registration">Registration</NavLink></li>
     </>
+
+
+    const handleLogout = () => {
+        logOut()
+            .then(res => {
+                console.log("Logged out", res);
+            })
+            .catch(err => {
+                console.log("Error logging out", err);
+            });
+    };
 
     return (
         <div className="navbar md:px-10 bg-white shadow-lg">
@@ -33,7 +54,20 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                {user ? (
+                    <>
+                        <div className="image-container mr-3"
+                            onMouseEnter={handleMouseEnter}
+                            onMouseLeave={handleMouseLeave}>
+
+                            <img className={hovered ? 'image-hovered rounded-full w-16'  : 'image-normal w-16 rounded-full'} src={user.photoURL} alt="" />
+                            {hovered && <div className="text-overlay">{user.displayName}</div>}
+                        </div>
+                        <button onClick={handleLogout} className="btn hover:bg-[#FF3811] bg-[#FF3811] text-white">Log Out</button>
+                    </>
+                ) : (
+                    <NavLink to="/login"><button className="btn bg-[#FF3811] text-white">Login</button></NavLink>
+                )}
             </div>
         </div>
     );

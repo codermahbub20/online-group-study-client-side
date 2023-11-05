@@ -55,9 +55,26 @@ const Registration = () => {
                     photoURL: photo
                 })
             })
+               
+
             .catch(error => {
                 console.log(error)
             })
+
+            const user = {email,name,photo}
+                
+            fetch("http://localhost:5000/user", {
+                    method: "POST",
+                    headers: {
+                        'content-types': 'application/json'
+                    },
+                    body: JSON.stringify(user)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                    })
+            
 
         notify()
         form.reset()
