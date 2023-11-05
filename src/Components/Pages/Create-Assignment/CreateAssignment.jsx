@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 
@@ -5,6 +6,35 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const CreateAssignment = () => {
     const [startDate, setStartDate] = useState(new Date());
+
+
+    const handleCreateAssignment = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const title = form.title.value;
+        const description = form.description.value;
+        const mark = form.mark.value;
+        const photo = form.photo.value;
+        const level = form.level.value;
+        const date = form.date.value;
+
+        const assignmentInfo = { title, description, mark, photo, level, date }
+
+        console.log(assignmentInfo)
+
+        axios.post('http://localhost:5000/createAssignment',assignmentInfo)
+        .then(res=>{
+            console.log(res.data)
+        })
+        .catch(error =>{
+            console.log(error)
+        })
+
+        form.reset()
+    }
+
+
+
     return (
         <div>
             <div className="p-5 rounded-lg">
@@ -22,40 +52,40 @@ const CreateAssignment = () => {
                 <h1 className="text-3xl text-center font-medium mb-3">Enter Create A Assignment</h1>
                 <hr />
                 <form onSubmit={handleCreateAssignment}>
-                    <div className='md:flex md:px-24'>
-                        <div className="form-control md:w-1/2">
+                    <div className='lg:flex md:px-24'>
+                        <div className="form-control lg:w-1/2">
                             <label className="label">
-                                <span className="label-text   text-xl">Assignment Title</span>
+                                <span className="label-text  text-xl">Assignment Title</span>
                             </label>
                             <input type="text" placeholder="Assignment Title" className="input input-bordered" name='title' required />
 
                         </div>
-                        <div className="form-control md:ml-4 md:w-1/2">
+                        <div className="form-control lg:ml-4 lg:w-1/2">
                             <label className="label">
-                                <span className="label-text   text-xl">Assignment Description</span>
+                                <span className="label-text text-xl">Assignment Description</span>
                             </label>
                             <input type="text" placeholder="Assignment Description" className="input input-bordered" name='description' required />
                         </div>
                     </div>
 
 
-                    <div className='md:flex md:px-24'>
-                        <div className="form-control md:w-1/2">
+                    <div className='lg:flex md:px-24'>
+                        <div className="form-control lg:w-1/2">
                             <label className="label">
-                                <span className="label-text   text-xl">Assignment Marks</span>
+                                <span className="label-text text-xl">Assignment Marks</span>
                             </label>
                             <input type="number" defaultValue={50} placeholder="Assignment Marks" className="input input-bordered" name='mark' required />
 
                         </div>
-                        <div className="form-control md:ml-4 md:w-1/2">
+                        <div className="form-control lg:ml-4 lg:w-1/2">
                             <label className="label">
                                 <span className="label-text   text-xl">Thumbnail Img Url</span>
                             </label>
                             <input type="text" placeholder="Thumbnail Img Url" className="input input-bordered" name='photo' required />
                         </div>
                     </div>
-                    <div className='md:flex md:px-24'>
-                        <div className="form-control md:w-1/2">
+                    <div className='lg:flex md:px-24'>
+                        <div className="form-control lg:w-1/2">
                             <label className="label">
                                 <span className="label-text  text-xl">Assignment Level</span>
                             </label>
@@ -67,7 +97,7 @@ const CreateAssignment = () => {
                             </select>
 
                         </div>
-                        <div className="form-control md:ml-4 md:w-1/2">
+                        <div className="form-control lg:ml-4 lg:w-1/2">
                             <label className="label">
                                 <span className="label-text   text-xl">Assignment Due Date</span>
                             </label>
