@@ -12,6 +12,7 @@ const AssignmentCard = ({ card }) => {
                 </figure>
                 <div className="card-body items-center ">
                     <h2 className="text-xl">Title: {title}</h2>
+                    
                     <p className="text-xl"> Assignment Marks: {mark}</p>
                     <div className="card-actions sm:items-center">
 

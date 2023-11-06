@@ -1,13 +1,15 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const CreateAssignment = () => {
     const [startDate, setStartDate] = useState(new Date());
 
+    const {user} = useContext(AuthContext)
 
     const handleCreateAssignment = (e) => {
         e.preventDefault();
@@ -18,8 +20,8 @@ const CreateAssignment = () => {
         const photo = form.photo.value;
         const level = form.level.value;
         const date = form.date.value;
-
-        const assignmentInfo = { title, description, mark, photo, level, date }
+        const email = user.email;
+        const assignmentInfo = { title, description, mark, photo, level, date,email }
 
         console.log(assignmentInfo)
 

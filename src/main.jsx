@@ -15,6 +15,7 @@ import CreateAssignment from './Components/Pages/Create-Assignment/CreateAssignm
 import AllAssignment from './Components/Pages/All-Assignment/AllAssignment';
 import UpdateAssignment from './Components/Pages/Update-Assignment/UpdateAssignment';
 import ViewAssignment from './Components/Pages/View-Assignment/ViewAssignment';
+import TakeAssignment from './Components/Pages/Take-Assignment/TakeAssignment';
 
 
 
@@ -43,17 +44,22 @@ const router = createBrowserRouter([
       {
         path: "allassignment",
         element: <AllAssignment></AllAssignment>,
-        // loader: ()=>fetch(`http://localhost:5000/createAssignment`)
+        loader: () => fetch(`http://localhost:5000/createAssignmentCount`)
       },
       {
         path: "/updateassignment/:id",
         element: <UpdateAssignment></UpdateAssignment>,
-       loader: ({params}) => fetch(`http://localhost:5000/createAssignment/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/createAssignment/${params.id}`)
       },
       {
-        path:"/viewassignment/:id",
+        path: "/viewassignment/:id",
         element: <ViewAssignment></ViewAssignment>,
-        loader: ({params}) => fetch(`http://localhost:5000/createAssignment/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/createAssignment/${params.id}`)
+      },
+      {
+        path: "/takeassignment/:id",
+        element: <TakeAssignment></TakeAssignment>,
+        loader: ({ params }) => fetch(`http://localhost:5000/createAssignment/${params.id}`)
       }
     ]
   },

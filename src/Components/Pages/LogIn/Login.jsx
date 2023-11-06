@@ -28,7 +28,7 @@ const Login = () => {
                 console.log(error)
             })
 
-        form.reset()
+        // form.reset()
     }
 
     const handleGoogleSignIn = () =>{
