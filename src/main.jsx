@@ -16,6 +16,8 @@ import AllAssignment from './Components/Pages/All-Assignment/AllAssignment';
 import UpdateAssignment from './Components/Pages/Update-Assignment/UpdateAssignment';
 import ViewAssignment from './Components/Pages/View-Assignment/ViewAssignment';
 import TakeAssignment from './Components/Pages/Take-Assignment/TakeAssignment';
+import AllSubmited from './Components/Pages/AllSubmitedAssignment/AllSubmited';
+import Mark from './Components/Pages/AllSubmitedAssignment/Mark';
 
 
 
@@ -60,6 +62,16 @@ const router = createBrowserRouter([
         path: "/takeassignment/:id",
         element: <TakeAssignment></TakeAssignment>,
         loader: ({ params }) => fetch(`http://localhost:5000/createAssignment/${params.id}`)
+      },
+      {
+        path: "/allSubmitted",
+        element: <AllSubmited></AllSubmited>,
+        
+      },
+      {
+        path: "/giveMark/:id",
+        element: <Mark></Mark>,
+        loader: ({params})=>fetch(`http://localhost:5000/submittedData/${params.id}`)
       }
     ]
   },
