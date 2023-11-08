@@ -33,8 +33,8 @@ const Login = () => {
 
             })
             .catch(error => {
-                console.log(error)
-                setLogInError(error.message)
+                console.log(error.message)
+                // setLogInError(error.message)
             })
     }
 

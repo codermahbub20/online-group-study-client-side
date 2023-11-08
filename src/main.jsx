@@ -50,22 +50,22 @@ const router = createBrowserRouter([
       {
         path: "allassignment",
         element: <AllAssignment></AllAssignment>,
-        loader: () => fetch(`https://online-group-study-server-two.vercel.app/createAssignmentCount`)
+        loader: () => fetch(`http://localhost:5000/createAssignmentCount`)
       },
       {
         path: "/updateassignment/:id",
         element: <PrivateRoute><UpdateAssignment></UpdateAssignment></PrivateRoute>,
-        loader: ({ params }) => fetch(`https://online-group-study-server-two.vercel.app/createAssignment/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/createAssignment/${params.id}`)
       },
       {
         path: "/viewassignment/:id",
         element: <PrivateRoute><ViewAssignment></ViewAssignment></PrivateRoute>,
-        loader: ({ params }) => fetch(`https://online-group-study-server-two.vercel.app/createAssignment/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/createAssignment/${params.id}`)
       },
       {
         path: "/takeassignment/:id",
         element: <TakeAssignment></TakeAssignment>,
-        loader: ({ params }) => fetch(`https://online-group-study-server-two.vercel.app/createAssignment/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/createAssignment/${params.id}`)
       },
       {
         path: "/allSubmitted",
@@ -75,7 +75,7 @@ const router = createBrowserRouter([
       {
         path: "/giveMark/:id",
         element: <Mark></Mark>,
-        loader: ({params})=>fetch(`https://online-group-study-server-two.vercel.app/submittedData/${params.id}`)
+        loader: ({params})=>fetch(`http://localhost:5000/submittedData/${params.id}`)
       },
       {
         path: "/myassignment",

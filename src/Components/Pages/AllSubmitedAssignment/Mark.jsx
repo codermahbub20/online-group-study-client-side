@@ -11,8 +11,10 @@ const Mark = () => {
     const { pdf, name, email, status, title, _id } = submitData;
 
     const handleSubmitted = e => {
+
         e.preventDefault();
         const form = e.target;
+
         const status = form.status.value;
         const mark = form.mark.value;
         const feedback = form.note.value;
@@ -21,10 +23,12 @@ const Mark = () => {
 
         const assignmentInfo = { status, feedback, mark }
 
-        axios.put(`https://online-group-study-server-two.vercel.app/submittedData/${_id}`, assignmentInfo)
+        console.log(assignmentInfo)
+
+        axios.put(`http://localhost:5000/submittedData/${_id}`, assignmentInfo)
             .then(res => {
                 console.log(res.data)
-                if (res.data.modifiedCount) {
+                if (res.data.modifiedCount > 0) {
                     Swal.fire({
                         title: 'Success!',
                         text: 'Assignment submitted Done !!',
@@ -52,6 +56,7 @@ const Mark = () => {
                     <h1>Examinee Name : {name}</h1>
                     <h1>Author Email  : {email}</h1>
                     <h1>Assignment Title : {title}</h1>
+
                     <form onSubmit={handleSubmitted}>
                         <select name="status" className="select w-3/4 select-bordered  max-w-xs">
                             <option>submitted</option>

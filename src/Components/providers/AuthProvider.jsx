@@ -30,23 +30,8 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
 
-            // const userEmail = currentUser?.email || user.email;
-            // const loggedUser = {email: userEmail}
-
             setUser(currentUser)
             setLoading(false)
-
-            // if(currentUser){
-            //     axios.post('https://online-group-study-server-two.vercel.app/jwt',loggedUser,{withCredentials: true})
-            //     .then(res =>{
-            //         console.log(res.data)
-            //     })
-            // }else{
-            //     axios.post('https://online-group-study-server-two.vercel.app/signnnout',loggedUser,{withCredentials: true})
-            //     .then(res=>{
-            //         console.log(res.data)
-            //     })
-            // }
         });
         return () => {
             unSubscribe();

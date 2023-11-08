@@ -5,47 +5,54 @@ import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 const AssignmentCard = ({ card, assignmentData, setAssignmentData }) => {
 
-    const { photo, mark, title, level, _id } = card;
+    const { photo, mark, title, level, _id,email } = card;
     // console.log(email)
     const {user} = useContext(AuthContext);
     // console.log(user.email)
 
-    const handleClickToDelete = _id => {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be delete your assignment item this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        })
-        .then((result) => {
-            if (result.isConfirmed) {
+    
 
-                fetch(`https://online-group-study-server-two.vercel.app/createAssignment/${_id}`, {
-                    method: 'DELETE'
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        if ( data.deletedCount > 0 ) {
-                            Swal.fire(
-                                'Deleted!',
-                                'Your  Assignment has Been Removed.',
-                                'success'
-                            )
-                            const remaining = assignmentData.filter(data => data._id !== _id)
-                            setAssignmentData(remaining)
-                        }else{
-                            Swal.fire(
-                                'Error!',
-                                'You can not  Removed this.',
-                                'error'
-                            )
-                        }
+        const handleClickToDelete = _id => {
+        if(user.email === email){
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be delete your assignment item this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            })
+            .then((result) => {
+                if (result.isConfirmed) {
+    
+                    fetch(`http://localhost:5000/createAssignment/${_id}`, {
+                        method: 'DELETE'
                     })
-            }
-        })
+                        .then(res => res.json())
+                        .then(data => {
+                            if ( data.deletedCount > 0 ) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your  Assignment has Been Removed.',
+                                    'success'
+                                )
+                                const remaining = assignmentData.filter(data => data._id !== _id)
+                                setAssignmentData(remaining)
+                            }
+                        })
+                }
+            })
+        }
+        else{
+            Swal.fire(
+                'Error!',
+                'You can not  Removed this.',
+                'error'
+            )
+        }
+    
     }
 
     return (

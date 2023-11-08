@@ -7,7 +7,7 @@ const AllSubmited = () => {
     const [allData,setAllData] = useState([])
   
     useEffect(()=>{
-        fetch('https://online-group-study-server-two.vercel.app/submittedData')
+        fetch('http://localhost:5000/submittedData')
         .then(res =>res.json())
         .then(data =>{
             setAllData(data)
@@ -20,7 +20,7 @@ const AllSubmited = () => {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-2 p-5 px-5">
                 {
-                    allData.map(submit => <SubmiCard  submit={submit} key={submit._id}></SubmiCard>)
+                    allData?.map(submit => <SubmiCard  submit={submit} key={submit._id}></SubmiCard>)
                 }
             </div>
         </div>
