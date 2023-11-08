@@ -21,6 +21,7 @@ const Navbar = () => {
         <li><NavLink to="/allassignment">All Assignment</NavLink></li>
         <li><NavLink to="/createassignment">Create Assignment</NavLink></li>
         <li><NavLink to="/allSubmitted">All Submited Assignment</NavLink></li>
+        <li><NavLink to="/myassignment">My Assignment</NavLink></li>
         <li><NavLink to="/login">Log in</NavLink></li>
         <li><NavLink to="/registration">Registration</NavLink></li>
     </>

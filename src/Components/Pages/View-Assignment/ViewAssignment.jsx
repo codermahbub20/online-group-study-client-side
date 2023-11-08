@@ -6,6 +6,12 @@ const ViewAssignment = () => {
 
     console.log(viewData)
     const { photo, title, description, level, mark, email, _id } = viewData;
+
+    const handleClickToDelete = () =>{
+        
+    }
+
+
     return (
         <div>
             <div className="w-11/12 mx-auto p-3">
@@ -32,6 +38,10 @@ const ViewAssignment = () => {
 
                             <Link to={`/takeassignment/${_id}`}>
                                 <button className="btn hover:bg-[#FF3811] text-white bg-[#FF3811] mt-2">Take Assignment</button>
+                            </Link>
+
+                            <Link >
+                                <button onClick={handleClickToDelete} className="btn ml-4 hover:bg-[#FF3811] text-white bg-[#FF3811] mt-2">Delete Assignment</button>
                             </Link>
 
                         </div>

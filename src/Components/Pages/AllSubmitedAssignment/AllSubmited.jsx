@@ -7,7 +7,7 @@ const AllSubmited = () => {
     const [allData,setAllData] = useState([])
   
     useEffect(()=>{
-        fetch('http://localhost:5000/submittedData')
+        fetch('https://online-group-study-server-two.vercel.app/submittedData')
         .then(res =>res.json())
         .then(data =>{
             setAllData(data)

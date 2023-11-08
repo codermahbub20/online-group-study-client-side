@@ -5,7 +5,7 @@ import Mark from "./Mark";
 const SubmiCard = ({ submit }) => {
 
 
-    const { title, name, mark, _id,status } = submit;
+    const { title, name, mark, _id,status,email } = submit;
 
     return (
         <div className="w-3/4 mx-auto">
@@ -13,6 +13,7 @@ const SubmiCard = ({ submit }) => {
                 <figure><h1 className="text-xl">Title: {title}</h1></figure>
                 <div className=" text-center space-y-3">
                     <h2 className=" text-lg">Examinee Name: {name}</h2>
+                    <h2 className=" text-lg">Submitted By: {email}</h2>
                     <p className="text-lg">Assignment Mark: {mark}</p>
                     <p className="text-lg">Assignment Status: <span className="text-blue-700">{status}</span></p>
                     <div className="card-actions justify-center">

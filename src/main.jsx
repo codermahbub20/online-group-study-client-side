@@ -18,6 +18,9 @@ import ViewAssignment from './Components/Pages/View-Assignment/ViewAssignment';
 import TakeAssignment from './Components/Pages/Take-Assignment/TakeAssignment';
 import AllSubmited from './Components/Pages/AllSubmitedAssignment/AllSubmited';
 import Mark from './Components/Pages/AllSubmitedAssignment/Mark';
+import Errorpage from './Components/Pages/ErrorPage/Errorpage';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
+import MyAssignment from './Components/Pages/MyAssignment/MyAssignment';
 
 
 
@@ -26,6 +29,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayOut></MainLayOut>,
+    errorElement: <Errorpage></Errorpage>,
     children: [
       {
         path: "/",
@@ -41,37 +45,41 @@ const router = createBrowserRouter([
       },
       {
         path: "createassignment",
-        element: <CreateAssignment></CreateAssignment>
+        element: <PrivateRoute><CreateAssignment></CreateAssignment></PrivateRoute>
       },
       {
         path: "allassignment",
         element: <AllAssignment></AllAssignment>,
-        loader: () => fetch(`http://localhost:5000/createAssignmentCount`)
+        loader: () => fetch(`https://online-group-study-server-two.vercel.app/createAssignmentCount`)
       },
       {
         path: "/updateassignment/:id",
-        element: <UpdateAssignment></UpdateAssignment>,
-        loader: ({ params }) => fetch(`http://localhost:5000/createAssignment/${params.id}`)
+        element: <PrivateRoute><UpdateAssignment></UpdateAssignment></PrivateRoute>,
+        loader: ({ params }) => fetch(`https://online-group-study-server-two.vercel.app/createAssignment/${params.id}`)
       },
       {
         path: "/viewassignment/:id",
-        element: <ViewAssignment></ViewAssignment>,
-        loader: ({ params }) => fetch(`http://localhost:5000/createAssignment/${params.id}`)
+        element: <PrivateRoute><ViewAssignment></ViewAssignment></PrivateRoute>,
+        loader: ({ params }) => fetch(`https://online-group-study-server-two.vercel.app/createAssignment/${params.id}`)
       },
       {
         path: "/takeassignment/:id",
         element: <TakeAssignment></TakeAssignment>,
-        loader: ({ params }) => fetch(`http://localhost:5000/createAssignment/${params.id}`)
+        loader: ({ params }) => fetch(`https://online-group-study-server-two.vercel.app/createAssignment/${params.id}`)
       },
       {
         path: "/allSubmitted",
-        element: <AllSubmited></AllSubmited>,
+        element: <PrivateRoute><AllSubmited></AllSubmited></PrivateRoute>,
         
       },
       {
         path: "/giveMark/:id",
         element: <Mark></Mark>,
-        loader: ({params})=>fetch(`http://localhost:5000/submittedData/${params.id}`)
+        loader: ({params})=>fetch(`https://online-group-study-server-two.vercel.app/submittedData/${params.id}`)
+      },
+      {
+        path: "/myassignment",
+        element: <MyAssignment></MyAssignment>
       }
     ]
   },

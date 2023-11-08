@@ -23,7 +23,7 @@ const TakeAssignment = () => {
 
         console.log(submitedData);
 
-        fetch("http://localhost:5000/submittedData", {
+        fetch("https://online-group-study-server-two.vercel.app/submittedData", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -27,45 +27,42 @@ const Registration = () => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
-        const photo = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
+        const photo = form.photo.value;
 
-        const registerUser = { name, photo, email, password }
-
-        if (password.length < 6) {
+        if(password.length < 6){
             notify1();
             return;
-        } else if (!/[A-Z]/.test(password)) {
+        }else if(!/[A-Z]/.test(password)){
             notify2();
             return;
-        } else if (!/^(?=.*[\d])(?=.*[!@#$%^&*])[\w!@#$%^&*]{6,16}$/.test(password)) {
+        }else if(!/^(?=.*[\d])(?=.*[!@#$%^&*])[\w!@#$%^&*]{6,16}$/.test(password)){
             notify3();
             return;
         }
 
-
-        console.log(registerUser)
-
         createUser(email, password)
-        .then(result => {
-            console.log(result)
+            .then(result => {
+                console.log(result)
 
-            updateProfile(result.user,{
-                displayName: name,
-                photoURL: photo
+                updateProfile(result.user,{
+                    displayName: name,
+                    photoURL: photo
+                })
+                .then(()=>console.log('Profile Updated'))
+                .catch(error =>{
+                    console.log(error)
+                })
+                
             })
-            .then(()=>console.log('Profile Updated'))
-            .catch(error =>{
+            .catch(error => {
                 console.log(error)
             })
-                
-        })
-        .catch(error => {
-            console.log(error)
-        })
-        notify()
-        form.reset()
+            notify()
+
+        console.log(name, email, password)
+
     }
 
     const handleGoogleSignIn = () => {

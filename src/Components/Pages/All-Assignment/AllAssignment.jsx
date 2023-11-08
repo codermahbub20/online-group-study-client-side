@@ -32,8 +32,10 @@ const AllAssignment = () => {
         }
     }
 
+
+
     useEffect(() => {
-        fetch(`http://localhost:5000/createAssignment?page=${currentPage} & size=${itemsPerPage}`)
+        fetch(`https://online-group-study-server-two.vercel.app/createAssignment?page=${currentPage} & size=${itemsPerPage}`)
             .then(res => res.json())
             .then(data => {
                 setAssignmentData(data)
@@ -53,9 +55,19 @@ const AllAssignment = () => {
                     </div>
                 </div>
             </div>
+
+            <div className="w-3/4 mx-auto mt-2 mb-2">
+                <select className="select select-bordered w-full mx-auto max-w-xs">
+                    <option disabled selected>Sort By Level</option>
+                    <option>easy</option>
+                    <option>medium</option>
+                    <option>hard</option>
+                </select>
+            </div>
+
             <div className="w-5/6 p-5 mx-auto gap-5 grid md:grid-cols-2 lg:grid-cols-3">
                 {
-                    assignmentData.map(card => <AssignmentCard card={card} key={card._id}></AssignmentCard>)
+                    assignmentData.map(card => <AssignmentCard assignmentData={assignmentData} setAssignmentData={setAssignmentData} card={card} key={card._id}></AssignmentCard>)
                 }
             </div>
 

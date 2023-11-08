@@ -4,18 +4,19 @@ import { FcGoogle } from "react-icons/fc";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import app from "../../Firebase/firebase.config";
 import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
 
     const [loginError, setLogInError] = useState('');
 
-    // const location = useLocation()
-    // const navigate = useNavigate()
+    const location = useLocation()
+    const navigate = useNavigate()
 
     const { logIn } = useContext(AuthContext)
 
     const provider = new GoogleAuthProvider();
-    const auth = getAuth(app);
+    const auth = getAuth();
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -26,18 +27,9 @@ const Login = () => {
 
         logIn(email, password)
             .then(res => {
-                console.log(res.user)
-
-                const user = {email}
-
-              
-                axios.post('http://localhost:5000/jwt',user,{withCredentials: true})
-                .then(res =>{
-                    console.log(res.data)
-                })
-                .catch(error =>{
-                    console.log(error)
-                })
+                console.log(res)
+                
+                navigate(location?.state ? location.state : '/');
 
             })
             .catch(error => {
@@ -45,6 +37,7 @@ const Login = () => {
                 setLogInError(error.message)
             })
     }
+
     const handleGoogleSignIn = () => {
         signInWithPopup(auth, provider)
             .then(result => {
@@ -54,6 +47,7 @@ const Login = () => {
                 console.log(error)
             })
     }
+
 
     return (
         <div className="p-5 ">
