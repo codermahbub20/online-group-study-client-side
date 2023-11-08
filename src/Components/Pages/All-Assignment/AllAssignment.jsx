@@ -10,17 +10,18 @@ const AllAssignment = () => {
     const [currentPage, setCurrentPage] = useState(0);
 
     const { count } = useLoaderData();
-    console.log(count)
+    // console.log(count)
 
     const numberOfPage = Math.ceil(count / itemsPerPage);
     const pages = [...Array(numberOfPage).keys()];
 
     const handleItemsPerPage = e => {
+        console.log(e.target.value)
         const value = parseInt(e.target.value)
         setItemsPerPage(value);
         setCurrentPage(0);
     }
-
+console.log(itemsPerPage)
     const handlePrevPage = () => {
         if (currentPage > 0) {
             setCurrentPage(currentPage - 1);
@@ -35,7 +36,7 @@ const AllAssignment = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/createAssignment?page=${currentPage} & size=${itemsPerPage}`)
+        fetch(`http://localhost:5000/createAssignment?page=${currentPage}&size=${itemsPerPage}`)
             .then(res => res.json())
             .then(data => {
                 setAssignmentData(data)
@@ -80,11 +81,13 @@ const AllAssignment = () => {
                         key={page}>{page}</button>)
                 }
                 <button onClick={handleNextPage} className="btn ml-1 btn-sm">Next</button>
+
                 <select value={itemsPerPage} onChange={handleItemsPerPage} className="btn btn-sm ml-4" name="" id="">
                     <option value="2">2</option>
                     <option value="6">6</option>
                     <option value="8">8</option>
                 </select>
+
             </div>
 
         </div>
