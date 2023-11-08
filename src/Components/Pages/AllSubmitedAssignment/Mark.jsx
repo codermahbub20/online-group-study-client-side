@@ -25,7 +25,7 @@ const Mark = () => {
 
         console.log(assignmentInfo)
 
-        axios.put(`http://localhost:5000/submittedData/${_id}`, assignmentInfo)
+        axios.put(`https://online-group-study-server-two.vercel.app/submittedData/${_id}`, assignmentInfo)
             .then(res => {
                 console.log(res.data)
                 if (res.data.modifiedCount > 0) {

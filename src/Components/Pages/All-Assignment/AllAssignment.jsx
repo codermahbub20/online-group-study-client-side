@@ -36,7 +36,7 @@ console.log(itemsPerPage)
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/createAssignment?page=${currentPage}&size=${itemsPerPage}`)
+        fetch(`https://online-group-study-server-two.vercel.app/createAssignment?page=${currentPage}&size=${itemsPerPage}`)
             .then(res => res.json())
             .then(data => {
                 setAssignmentData(data)
