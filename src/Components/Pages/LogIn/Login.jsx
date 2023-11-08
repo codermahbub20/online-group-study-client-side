@@ -1,44 +1,58 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import app from "../../Firebase/firebase.config";
+import axios from "axios";
 
 const Login = () => {
 
-    const provider = new GoogleAuthProvider();
-    const auth = getAuth(app);
+    const [loginError, setLogInError] = useState('');
+
+    // const location = useLocation()
+    // const navigate = useNavigate()
+
     const { logIn } = useContext(AuthContext)
 
-    const handleLogin = e => {
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth(app);
+
+    const handleLogin = (e) => {
         e.preventDefault();
-        const form = e.target;
-        const email = form.email.value;
-        const password = form.password.value;
-
-        const registerUser = { email, password }
-
-        console.log(registerUser)
+        const form = new FormData(e.currentTarget)
+        const email = form.get('email');
+        const password = form.get('password');
+        console.log(email, password)
 
         logIn(email, password)
             .then(res => {
-                console.log(res)
+                console.log(res.user)
+
+                const user = {email}
+
+              
+                axios.post('http://localhost:5000/jwt',user,{withCredentials: true})
+                .then(res =>{
+                    console.log(res.data)
+                })
+                .catch(error =>{
+                    console.log(error)
+                })
+
+            })
+            .catch(error => {
+                console.log(error)
+                setLogInError(error.message)
+            })
+    }
+    const handleGoogleSignIn = () => {
+        signInWithPopup(auth, provider)
+            .then(result => {
+                console.log(result)
             })
             .catch(error => {
                 console.log(error)
             })
-
-        // form.reset()
-    }
-
-    const handleGoogleSignIn = () =>{
-        signInWithPopup(auth,provider)
-        .then(result =>{
-            console.log(result)
-        })
-        .catch(error =>{
-            console.log(error)
-        })
     }
 
     return (

@@ -48,19 +48,22 @@ const Registration = () => {
         console.log(registerUser)
 
         createUser(email, password)
-            .then(res => {
-                console.log(res);
-                updateProfile(res.user, {
-                    displayName: name,
-                    photoURL: photo
-                })
-            })
-               
+        .then(result => {
+            console.log(result)
 
-            .catch(error => {
+            updateProfile(result.user,{
+                displayName: name,
+                photoURL: photo
+            })
+            .then(()=>console.log('Profile Updated'))
+            .catch(error =>{
                 console.log(error)
             })
-
+                
+        })
+        .catch(error => {
+            console.log(error)
+        })
         notify()
         form.reset()
     }
