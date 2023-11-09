@@ -1,6 +1,8 @@
 import axios from "axios";
-import { useLoaderData } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../providers/AuthProvider";
 
 
 const Mark = () => {
@@ -8,7 +10,9 @@ const Mark = () => {
     const submitData = useLoaderData();
     console.log(submitData)
 
-    const { pdf, name, email, status, title, _id } = submitData;
+    const { user } = useContext(AuthContext)
+
+    const { pdf, name, status, author, title, _id, examinee, photo } = submitData;
 
     const handleSubmitted = e => {
 
@@ -17,31 +21,30 @@ const Mark = () => {
 
         const status = form.status.value;
         const mark = form.mark.value;
-        const feedback = form.note.value;
+        const note = form.note.value;
 
-        console.log(status, mark, feedback)
+        console.log(status, mark, note)
 
-        const assignmentInfo = { status, feedback, mark }
+        const assignmentInfo = { status, note, mark, pdf, title, examinee, author, name, photo }
 
         console.log(assignmentInfo)
 
         axios.put(`https://online-group-study-server-two.vercel.app/submittedData/${_id}`, assignmentInfo)
-            .then(res => {
-                console.log(res.data)
-                if (res.data.modifiedCount > 0) {
-                    Swal.fire({
-                        title: 'Success!',
-                        text: 'Assignment submitted Done !!',
-                        icon: 'success',
-                        confirmButtonText: 'Great'
-                    })
-                }
+                .then(res => {
+                    console.log(res.data)
+                    if (res.data.modifiedCount > 0) {
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Assignment submitted Done !!',
+                            icon: 'success',
+                            confirmButtonText: 'Great'
+                        })
+                    }
 
-            })
-            .catch(error => {
-                console.log(error)
-            })
-
+                })
+                .catch(error => {
+                    console.log(error)
+                })
 
     }
 
@@ -54,7 +57,8 @@ const Mark = () => {
 
                 <div className="text-xl space-y-3">
                     <h1>Examinee Name : {name}</h1>
-                    <h1>Author Email  : {email}</h1>
+                    <h1>view pdf: <Link className="text-blue-800 underline" to={pdf}>Click Here</Link></h1>
+                    <h1>Examinee Email  : {examinee}</h1>
                     <h1>Assignment Title : {title}</h1>
 
                     <form onSubmit={handleSubmitted}>

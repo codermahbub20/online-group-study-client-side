@@ -40,9 +40,7 @@ const ViewAssignment = () => {
                                 <button className="btn hover:bg-[#FF3811] text-white bg-[#FF3811] mt-2">Take Assignment</button>
                             </Link>
 
-                            <Link >
-                                <button onClick={handleClickToDelete} className="btn ml-4 hover:bg-[#FF3811] text-white bg-[#FF3811] mt-2">Delete Assignment</button>
-                            </Link>
+
 
                         </div>
                     </div>

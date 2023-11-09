@@ -9,9 +9,7 @@ const AssignmentCard = ({ card, assignmentData, setAssignmentData }) => {
     // console.log(email)
     const {user} = useContext(AuthContext);
     // console.log(user.email)
-
     
-
         const handleClickToDelete = _id => {
         if(user.email === email){
 
@@ -63,7 +61,8 @@ const AssignmentCard = ({ card, assignmentData, setAssignmentData }) => {
                 </figure>
                 <div className="card-body items-center ">
                     <h2 className="text-xl">Title: {title}</h2>
-
+                    <h2 className="text-xl">Level: {level}</h2>
+                    <h2 className="text-xl">Author: {email}</h2>
                     <p className="text-xl"> Assignment Marks: {mark}</p>
                     <div className="card-actions sm:items-center">
 

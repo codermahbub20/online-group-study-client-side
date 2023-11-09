@@ -9,7 +9,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 const CreateAssignment = () => {
     const [startDate, setStartDate] = useState(new Date());
 
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
 
     const handleCreateAssignment = (e) => {
         e.preventDefault();
@@ -21,25 +21,45 @@ const CreateAssignment = () => {
         const level = form.level.value;
         const date = form.date.value;
         const email = user.email;
-        const assignmentInfo = { title, description, mark, photo, level, date,email }
+
+        const assignmentInfo = { title, description, mark, photo, level, date, email }
 
         console.log(assignmentInfo)
 
-        axios.post('https://online-group-study-server-two.vercel.app/createAssignment',assignmentInfo)
-        .then(res=>{
-            console.log(res.data)
-            if(res.data.insertedId){
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Assignment create Successfully Done !!',
-                    icon: 'success',
-                    confirmButtonText: 'Great'
-                  })
-            }
-        })
-        .catch(error =>{
-            console.log(error)
-        })
+        if (!title || !mark || !email || !description) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Validation Error',
+                text: 'All fields are required!',
+            });
+            return;
+        }
+
+        if (mark <= 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Validation Error',
+                text: 'Mark must be a positive number!',
+            });
+            return;
+        }
+
+
+        axios.post('https://online-group-study-server-two.vercel.app/createAssignment', assignmentInfo)
+            .then(res => {
+                console.log(res.data)
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Assignment create Successfully Done !!',
+                        icon: 'success',
+                        confirmButtonText: 'Great'
+                    })
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
 
         form.reset()
     }
@@ -68,14 +88,14 @@ const CreateAssignment = () => {
                             <label className="label">
                                 <span className="label-text  text-xl">Assignment Title</span>
                             </label>
-                            <input type="text" placeholder="Assignment Title" className="input input-bordered" name='title' required />
+                            <input type="text" placeholder="Assignment Title" className="input input-bordered" name='title'  />
 
                         </div>
                         <div className="form-control lg:ml-4 lg:w-1/2">
                             <label className="label">
                                 <span className="label-text text-xl">Assignment Description</span>
                             </label>
-                            <input type="text" placeholder="Assignment Description" className="input input-bordered" name='description' required />
+                            <input type="text" placeholder="Assignment Description" className="input input-bordered" name='description'  />
                         </div>
                     </div>
 
@@ -85,14 +105,14 @@ const CreateAssignment = () => {
                             <label className="label">
                                 <span className="label-text text-xl">Assignment Marks</span>
                             </label>
-                            <input type="number" defaultValue={50} placeholder="Assignment Marks" className="input input-bordered" name='mark' required />
+                            <input type="number" defaultValue={50} placeholder="Assignment Marks" className="input input-bordered" name='mark' />
 
                         </div>
                         <div className="form-control lg:ml-4 lg:w-1/2">
                             <label className="label">
                                 <span className="label-text   text-xl">Thumbnail Img Url</span>
                             </label>
-                            <input type="text" placeholder="Thumbnail Img Url" className="input input-bordered" name='photo' required />
+                            <input type="text" placeholder="Thumbnail Img Url" className="input input-bordered" name='photo'  />
                         </div>
                     </div>
                     <div className='lg:flex md:px-24'>
@@ -112,6 +132,7 @@ const CreateAssignment = () => {
                             <label className="label">
                                 <span className="label-text   text-xl">Assignment Due Date</span>
                             </label>
+
                             <DatePicker name="date" className="input w-full input-bordered" selected={startDate} onChange={(date) => setStartDate(date)} />
 
                         </div>

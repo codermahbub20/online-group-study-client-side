@@ -8,7 +8,7 @@ const TakeAssignment = () => {
     const specificData = useLoaderData();
     const { user } = useContext(AuthContext)
 
-    const { title } = specificData;
+    const { title, email } = specificData;
 
     const handleAssignmentSubmit = e => {
         e.preventDefault();
@@ -18,8 +18,10 @@ const TakeAssignment = () => {
         const note = form.note.value;
         const mark = form.mark.value;
         const status = form.status.value;
-        const email = user.email;
-        const submitedData = { note, pdf, mark, email, name, title,status }
+        const author = email;
+        const examinee = user.email;
+
+        const submitedData = { note, pdf, mark, author, name, title, status, examinee }
 
         console.log(submitedData);
 
@@ -76,7 +78,7 @@ const TakeAssignment = () => {
                         </div>
                         <div className="form-control">
                             <select name="status" className="select select-bordered w-full max-w-xs">
-                                
+
                                 <option>pending</option>
                             </select>
                         </div>
