@@ -21,6 +21,7 @@ import Mark from './Components/Pages/AllSubmitedAssignment/Mark';
 import Errorpage from './Components/Pages/ErrorPage/Errorpage';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import MyAssignment from './Components/Pages/MyAssignment/MyAssignment';
+import WhiteBoard from './Components/Pages/WhiteBoard/WhiteBoard';
 
 
 
@@ -80,6 +81,10 @@ const router = createBrowserRouter([
       {
         path: "/myassignment",
         element: <MyAssignment></MyAssignment>
+      },
+      {
+        path: "/whiteBoard",
+        element: <WhiteBoard></WhiteBoard>
       }
     ]
   },

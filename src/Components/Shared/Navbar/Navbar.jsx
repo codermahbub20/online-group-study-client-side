@@ -68,7 +68,7 @@ const Navbar = () => {
                         <button onClick={handleLogout} className="btn hover:bg-[#FF3811] bg-[#FF3811] text-white">Log Out</button>
                     </>
                 ) : (
-                    <NavLink to="/login"><button className="btn bg-[#FF3811] text-white">Login</button></NavLink>
+                    <NavLink to="/whiteBoard"><button className="btn bg-[#FF3811] text-white">WhiteBoard</button></NavLink>
                 )}
             </div>
         </div>
