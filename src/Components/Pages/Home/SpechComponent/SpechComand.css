@@ -1,0 +1,47 @@
+/* SpeechComponent.css */
+.speech-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .speech-buttons button,
+  .speech-result button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .speech-buttons button:disabled,
+  .speech-result button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .speech-buttons button:hover,
+  .speech-result button:hover {
+    background-color: #45a049;
+  }
+  
+  .speech-result {
+    margin-top: 20px;
+  }
+  
+  .speech-result p {
+    font-size: 18px;
+  }
+  
+  .speech-result button {
+    background-color: #2196f3;
+  }
+  
