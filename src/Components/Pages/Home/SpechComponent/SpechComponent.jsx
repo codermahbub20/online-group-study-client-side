@@ -60,7 +60,7 @@ const SpeechComponent = () => {
   return (
 
     <div>
-      <div className='mt-5 space-y-4 text-center'>
+      <div className='mt-5 p-5  space-y-4 text-center'>
         <h1 className='text-2xl font-medium'>Speech To Text And Text To Speech</h1>
         <p className='text-xl font-medium'>Develop a passion for learning. If you do, you would never cease to grow. We <br />
           fuel your passion at Online Learning!</p>

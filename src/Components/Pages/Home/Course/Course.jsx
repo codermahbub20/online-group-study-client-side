@@ -10,7 +10,7 @@ const Course = () => {
                     fuel your passion at Online Learning!</p>
             </div>
 
-            <div className="grid sm:grid-cols-1 w-11/12 md:grid-cols-2  lg:grid-cols-3 gap-3 mx-auto p-5 mt-4 mb-3">
+            <div className="grid sm:grid-cols-1 w-3/4 md:grid-cols-2  lg:grid-cols-3 gap-5 mx-auto p-5 mt-4 mb-3">
 
 
 
