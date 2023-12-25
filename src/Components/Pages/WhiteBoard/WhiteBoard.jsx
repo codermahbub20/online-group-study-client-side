@@ -48,8 +48,8 @@ const Whiteboard = () => {
   };
 
   return (
-    <div>
-      <div>
+    <div className='text-center'>
+      <div >
         <label htmlFor="colorPicker">Color:</label>
         <input
           type="color"
@@ -58,7 +58,7 @@ const Whiteboard = () => {
           onChange={(e) => handleColorChange(e.target.value)}
         />
       </div>
-      <div>
+      <div >
         <label htmlFor="lineWidth">Line Width:</label>
         <input
           type="range"
@@ -71,6 +71,7 @@ const Whiteboard = () => {
       </div>
       <button onClick={handleEraser}>Eraser</button>
 
+      <div className='flex justify-center'>
       <canvas
         ref={canvasRef}
         width={400}
@@ -81,6 +82,7 @@ const Whiteboard = () => {
         onMouseUp={endDrawing}
         onMouseOut={endDrawing}
       />
+      </div>
     </div>
   );
 };

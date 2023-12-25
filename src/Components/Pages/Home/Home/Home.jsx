@@ -1,4 +1,5 @@
 import Banner from "../Banner/Banner";
+import Course from "../Course/Course";
 import Features from "../Features/Features";
 import Faqs from "../Frequently-Ask-And-Question/Faqs";
 import SpeechComponent from "../SpechComponent/SpechComponent";
@@ -18,9 +19,10 @@ const Home = () => {
             <div className="mt-5">
                 <Features></Features>
             </div>
-            <div className="w-3/4 mx-auto  p-5">
+            <div className="w-3/4 mx-auto  p-5 mb-0">
                 <Faqs></Faqs>
             </div>
+            <Course></Course>
             <SpeechComponent></SpeechComponent>
         </div>
     );

@@ -58,22 +58,30 @@ const SpeechComponent = () => {
   const recognitionRef = React.useRef(null);
 
   return (
-    <div className="speech-container">
-      <h1>Speech-to-Text and Text-to-Speech</h1>
-      <div className="speech-buttons">
-        <button onClick={startListening} disabled={listening}>
-          <i className="fas fa-microphone"></i> Start Listening
-        </button>
-        <button onClick={stopListening} disabled={!listening}>
-          <i className="fas fa-stop"></i> Stop Listening
-        </button>
+
+    <div>
+      <div className='mt-5 space-y-4 text-center'>
+        <h1 className='text-2xl font-medium'>Speech To Text And Text To Speech</h1>
+        <p className='text-xl font-medium'>Develop a passion for learning. If you do, you would never cease to grow. We <br />
+          fuel your passion at Online Learning!</p>
       </div>
-      <div className="speech-result">
-        <h2>Text Result:</h2>
-        <p>{text}</p>
-        <button onClick={handleTextToSpeech}>
-          <i className="fas fa-volume-up"></i> Text to Speech
-        </button>
+      <div className="speech-container">
+        <h1>Speech-to-Text and Text-to-Speech</h1>
+        <div className="speech-buttons">
+          <button onClick={startListening} disabled={listening}>
+            <i className="fas fa-microphone"></i> Start Listening
+          </button>
+          <button onClick={stopListening} disabled={!listening}>
+            <i className="fas fa-stop"></i> Stop Listening
+          </button>
+        </div>
+        <div className="speech-result">
+          <h2>Text Result:</h2>
+          <p>{text}</p>
+          <button onClick={handleTextToSpeech}>
+            <i className="fas fa-volume-up"></i> Text to Speech
+          </button>
+        </div>
       </div>
     </div>
   );
